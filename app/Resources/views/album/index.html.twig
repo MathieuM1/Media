@@ -1,45 +1,47 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Albums list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titrealbum</th>
-                <th>Artiste</th>
-                <th>Genre</th>
-                <th>Support</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <h1 class="text-center">Liste des Albums</h1>
         {% for album in albums %}
-            <tr>
-                <td><a href="{{ path('album_show', { 'id': album.id }) }}">{{ album.id }}</a></td>
-                <td>{{ album.titreAlbum }}</td>
-                <td>{{ album.artiste }}</td>
-                <td>{{ album.genre }}</td>
-                <td>{{ album.support }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('album_show', { 'id': album.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('album_edit', { 'id': album.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class="album">
+                <h2 class="text-center">{{ album.titreAlbum }}</h2>
+                <h3 class="text-center ">{{ album.artiste }}</h3>
+                <p class="text-center">Genre: {{ album.genre }}</p>
+                <p class="text-center">Support: {{ album.support }}</p>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ul class="text-left">
+                            <li>
+                                <a  class="linkIndex" href="{{ path('album_show', { 'id': album.id }) }}">voir en detail</a>
+                            </li>
+                            <li>
+                                <a class="linkIndex" href="{{ path('album_edit', { 'id': album.id }) }}">modifier la fiche</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-6">
+                        <ul class="text-right">
+                            <li>
+                                <a class="linkIndex" href="{{ path('commentaire_new', { 'id': album.id }) }}">laisser un commentaire</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            {% for commentaire in commentaires %}
+                <div class="row text-center">
+                    <div class="col-lg-12">
+                        <h2>Commentaires</h2>
+                        <p>Utilisateur: {{ commentaire.utilisateur }}</p>
+                        <p>Commentaire: {{ commentaire.commentaire }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+                {% endfor %}
 
-    <ul>
+            </div>
+    <ul class="text-center">
         <li>
-            <a href="{{ path('album_new') }}">Create a new album</a>
+            <a class="linkIndex" href="{{ path('album_new') }}">Créer un nouvel album</a>
         </li>
     </ul>
 {% endblock %}

@@ -23,13 +23,16 @@ class AlbumController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $albums = $em->getRepository('MediaBundle:Album')->findAll();
-
+        $commentaires = $em->getRepository('MediaBundle:Commentaire')->findAll();
         return $this->render('album/index.html.twig', array(
             'albums' => $albums,
+            'commentaires' => $commentaires,
+
         ));
+
     }
+
 
     /**
      * Creates a new album entity.

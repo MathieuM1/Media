@@ -2,7 +2,10 @@
 Media
 =====
 
-A Symfony project created on November 22, 2016, 2:59 pm.
+Créer et lister des albums, ajouter des commentaires liés à ces albums.
+Mini projet dans le cadre d'un exam
+
+Utilisation de Symfony
 =======
 # Media
 
